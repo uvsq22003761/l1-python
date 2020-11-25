@@ -63,7 +63,8 @@ def altitudeMax(n):
 def altitudeMaxPlusieursListes(n_max):
     liste_altitude_max = (altitudeMax(i) for i in range (1, n_max))
     p = max(liste_altitude_max)
-    print ("La plus grande altitude est", p, "atteint en", liste_altitude_max.index(p))
+
+    print("La plus grande altitude est", int(p), "atteint en")#liste_altitude_max.index(p))
 
 
 altitudeMaxPlusieursListes(10000)
