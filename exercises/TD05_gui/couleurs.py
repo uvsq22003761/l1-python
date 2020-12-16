@@ -85,6 +85,7 @@ label_aleatoire.grid(column=0, row=0)
 label_degrade_gris.grid(column=0, row=1)
 label_degrade_2D.grid(column=0, row=2)
 
+
 #draw_pixel(128, 128, "red")
 
 racine.mainloop() # Lancement de la boucle principale
