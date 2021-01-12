@@ -4,50 +4,79 @@ racine = tk.Tk() # Création de la fenêtre racine
 
 racine.title("Calculatrice") 
 
+#Variables
+type_de_calcul = ""
+nb1 = ""
+nb2 = ""
+nb = ""
+resultat = ""
+
+
 #Fonctions
 
+
 def ajoutCaractere(nb):
+    global nb1
     nb1 += nb
+    zone_affichage["text"] = nb1
+
+    if nb2 != "" and type_de_calcul == 1:
+        zone_affichage["text"] = nb2, "+", nb1
+
+    elif nb2 != "" and type_de_calcul == 2:
+        zone_affichage["text"] = nb2, "-", nb1
+    
+    elif nb2 != "" and type_de_calcul == 3:
+        zone_affichage["text"] = nb2, "x", nb1
+    
+    elif nb2 != "" and type_de_calcul == 4:
+        zone_affichage["text"] = nb2, "/", nb1
+
 
 
 def un():
-    global nb1
-    nb1 = 1
+    ajoutCaractere("1")
 
 
 def deux():
-    global nb1
-    nb1 = 2
+    ajoutCaractere("2")
 
-    
+
 def trois():
-    global nb1
-    nb1 = 3
+    ajoutCaractere("3")
+
+
+def virgule():
+    ajoutCaractere(".")
 
 
 def plus():
     global type_de_calcul, nb1, nb2
+    zone_affichage["text"] = nb1, "+"
     nb2 = nb1
     nb1 = ""
     type_de_calcul = 1
-    
+
 
 def moins():
     global type_de_calcul, nb1, nb2
+    zone_affichage["text"] = nb1, "-"
     nb2 = nb1
     nb1 = ""
     type_de_calcul = 2
-    
+
 
 def multiplication():
     global type_de_calcul, nb1, nb2
+    zone_affichage["text"] = nb1, "x"
     nb2 = nb1
     nb1 = ""
     type_de_calcul = 3
-    
+
 
 def division():
     global type_de_calcul, nb1, nb2
+    zone_affichage["text"] = nb1, "/"
     nb2 = nb1
     nb1 = ""
     type_de_calcul = 4
@@ -70,23 +99,27 @@ def egal():
             resultat = "Erreur"
         else:
             resultat = nb2 / nb1
-            
-    print(resultat)
-    
+
+    zone_affichage["text"] = "=", resultat
 
 
-#Autres
-type_de_calcul = ""
-nb1 = ""
-nb2 = ""
-nb = ""
-resultat = ""
+def effacer():
+    global nb1, nb2, type_de_calcul, nb, resultat
+    type_de_calcul = ""
+    nb1 = ""
+    nb2 = ""
+    nb = ""
+    resultat = ""
+
+    zone_affichage["text"] = "Tapper votre calcul"
 
 
 #Interface graphique
 
-resultat = tk.Label(racine,text = "Résultat (à modifier)", width = 44, height = 5)
-resultat.grid(column=0, row=0, columnspan = 4)
+
+zone_affichage = tk.Label(racine,text = "Tapper votre calcul", width = 44, height = 5)
+zone_affichage.grid(column=0, row=0, columnspan = 4)
+
 
 un = tk.Button(racine, text="1", width=10, height=5, command=un)
 un.grid(column=0, row=1)
@@ -110,25 +143,25 @@ six.grid(column=2, row=2)
 sept = tk.Button(racine,text = "7", width = 10, height = 5)
 sept.grid(column=0, row=3)
 
-huit = tk.Button(racine,text = "8", width = 10, height = 5)
+huit = tk.Button(racine, text = "8", width = 10, height = 5)
 huit.grid(column=1, row=3)
 
-neuf = tk.Button(racine,text = "9", width = 10, height = 5)
+neuf = tk.Button(racine, text = "9", width = 10, height = 5)
 neuf.grid(column=2, row=3)
 
-zero = tk.Button(racine,text = "0", width = 10, height = 5)
+zero = tk.Button(racine, text = "0", width = 10, height = 5)
 zero.grid(column=1, row=4)
 
-virgule = tk.Button(racine,text = ".", width = 10, height = 5)
+virgule = tk.Button(racine,text =".", width=10, height=5, command=virgule)
 virgule.grid(column=2, row=4)
 
-plus = tk.Button(racine,text = "+", width =10, height = 5, command=plus)
+plus = tk.Button(racine, text = "+", width =10, height = 5, command=plus)
 plus.grid(column=3, row=1)
 
-fois = tk.Button(racine,text = "x", width =10, height = 5, command=multiplication)
+fois = tk.Button(racine, text="x", width =10, height = 5, command=multiplication)
 fois.grid(column=3, row=3)
 
-diviser = tk.Button(racine,text = "/", width = 10, height = 5, command=division)
+diviser = tk.Button(racine,text ="/", width = 10, height = 5, command=division)
 diviser.grid(column=3, row=4)
 
 moins = tk.Button(racine,text = "-", width = 10, height = 5, command=moins)
@@ -137,6 +170,9 @@ moins.grid(column=3, row=2)
 egal = tk.Button(racine, text="=", width = 10, height = 5, command=egal)
 egal.grid(column=3, row=5)
 
+
+effacer = tk.Button(racine, text="effacer", width=10, height=5, command=effacer)
+effacer.grid(column=2, row=5)
 
 
 racine.mainloop() # Lancement de la boucle principale
