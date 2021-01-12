@@ -25,10 +25,10 @@ def ajoutCaractere(nb):
 
     elif nb2 != "" and type_de_calcul == 2:
         zone_affichage["text"] = nb2, "-", nb1
-    
+ 
     elif nb2 != "" and type_de_calcul == 3:
         zone_affichage["text"] = nb2, "x", nb1
-    
+
     elif nb2 != "" and type_de_calcul == 4:
         zone_affichage["text"] = nb2, "/", nb1
 
@@ -102,15 +102,11 @@ def egal():
 
     zone_affichage["text"] = "=", resultat
 
-
-def effacer():
-    global nb1, nb2, type_de_calcul, nb, resultat
-    type_de_calcul = ""
     nb1 = ""
     nb2 = ""
-    nb = ""
-    resultat = ""
 
+
+def effacer():
     zone_affichage["text"] = "Tapper votre calcul"
 
 
